@@ -5,7 +5,7 @@ const Header = observer(() => {
   return (
     <header style={styles.header}>
       <h1 style={styles.title}>{weddingStore.weddingInfo.coupleName}</h1>
-      <p style={styles.subtitle}>We're getting married!</p>
+      <p style={styles.subtitle}>Andrew + Gretchen Wedding</p>
     </header>
   );
 });

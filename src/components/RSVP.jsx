@@ -1,19 +1,28 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { weddingStore } from '../stores/WeddingStore';
+import { rsvpStore } from '../stores/RsvpStore';
 
 const RSVP = observer(() => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [attending, setAttending] = useState(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (name && email) {
-      weddingStore.addRsvp({ name, email, attending });
-      setName('');
-      setEmail('');
-      alert('Thank you for your RSVP!');
+      const result = await rsvpStore.submitRsvp({
+        name,
+        email,
+        attending,
+      });
+
+      if (result.success) {
+        setName('');
+        setEmail('');
+        setAttending(true);
+        alert('Thank you for your RSVP!');
+      }
     }
   };
 
@@ -54,11 +63,12 @@ const RSVP = observer(() => {
             I will be attending
           </label>
         </div>
-        <button type="submit" style={styles.button}>
-          Submit RSVP
+        {rsvpStore.error && <p style={styles.error}>{rsvpStore.error}</p>}
+        <button type="submit" style={styles.button} disabled={rsvpStore.submitting}>
+          {rsvpStore.submitting ? 'Submitting...' : 'Submit RSVP'}
         </button>
       </form>
-      <p style={styles.guestCount}>Total RSVPs: {weddingStore.totalGuests}</p>
+      <p style={styles.guestCount}>Total RSVPs: {rsvpStore.totalRsvps}</p>
     </section>
   );
 });
@@ -101,6 +111,12 @@ const styles = {
   },
   checkbox: {
     marginRight: '0.5rem',
+  },
+  error: {
+    color: '#ef4444',
+    fontSize: '0.9rem',
+    marginBottom: '1rem',
+    textAlign: 'center',
   },
   button: {
     width: '100%',

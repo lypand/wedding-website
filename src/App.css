@@ -1,6 +1,22 @@
 .App {
   min-height: 100vh;
-  background: #f8f9fa;
+  position: relative;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/images/IMG_6081.JPG);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  opacity: 0.6;
+  z-index: -1;
 }
 
 * {

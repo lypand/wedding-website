@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { rsvpStore } from '../stores/RsvpStore';
+import { rsvpStore } from '../../stores/RsvpStore';
+import { styles } from './RSVP.styles';
 
 const RSVP = observer(() => {
   const [name, setName] = useState('');
@@ -37,7 +38,7 @@ const RSVP = observer(() => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={styles.input}
-            placeholder="Your name"
+            placeholder="Guest Name(s)"
             required
           />
         </div>
@@ -60,7 +61,7 @@ const RSVP = observer(() => {
               onChange={(e) => setAttending(e.target.checked)}
               style={styles.checkbox}
             />
-            I will be attending
+            I can't wait to celebrate! I'll be there!
           </label>
         </div>
         {rsvpStore.error && <p style={styles.error}>{rsvpStore.error}</p>}
@@ -68,73 +69,8 @@ const RSVP = observer(() => {
           {rsvpStore.submitting ? 'Submitting...' : 'Submit RSVP'}
         </button>
       </form>
-      <p style={styles.guestCount}>Total RSVPs: {rsvpStore.totalRsvps}</p>
     </section>
   );
 });
-
-const styles = {
-  section: {
-    padding: '4rem 2rem',
-    maxWidth: '600px',
-    margin: '0 auto',
-    background: '#f8f9fa',
-  },
-  heading: {
-    textAlign: 'center',
-    fontSize: '2.5rem',
-    marginBottom: '2rem',
-    color: '#333',
-  },
-  form: {
-    background: 'white',
-    padding: '2rem',
-    borderRadius: '8px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-  },
-  formGroup: {
-    marginBottom: '1.5rem',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '0.5rem',
-    fontSize: '1rem',
-    color: '#333',
-  },
-  input: {
-    width: '100%',
-    padding: '0.75rem',
-    fontSize: '1rem',
-    border: '1px solid #ddd',
-    borderRadius: '4px',
-    boxSizing: 'border-box',
-  },
-  checkbox: {
-    marginRight: '0.5rem',
-  },
-  error: {
-    color: '#ef4444',
-    fontSize: '0.9rem',
-    marginBottom: '1rem',
-    textAlign: 'center',
-  },
-  button: {
-    width: '100%',
-    padding: '1rem',
-    fontSize: '1.1rem',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontWeight: '600',
-  },
-  guestCount: {
-    textAlign: 'center',
-    marginTop: '1.5rem',
-    fontSize: '1.1rem',
-    color: '#666',
-  },
-};
 
 export default RSVP;

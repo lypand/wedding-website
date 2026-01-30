@@ -1,0 +1,16 @@
+.photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+.close-button:hover {
+  opacity: 0.7;
+}

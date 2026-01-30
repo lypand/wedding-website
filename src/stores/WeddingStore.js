@@ -1,28 +1,30 @@
-import { makeAutoObservable } from 'mobx';
+import { observable, action, computed, makeObservable } from 'mobx';
 
 class WeddingStore {
-  weddingInfo = {
-    coupleName: 'Bride & Groom',
-    date: 'June 15, 2024',
-    time: '4:00 PM',
-    venue: 'Beautiful Garden Venue',
-    address: '123 Wedding Lane, City, State 12345',
+  @observable accessor weddingInfo = {
+    coupleName: 'The Wedding of Andrew Lyp and Gretchen Seibel!',
+    date: 'August 15, 2026',
+    time: '1:00PM',
+    address: '903 Lake Forest Drive, Ronald, WA 98940',
   };
 
-  rsvpList = [];
+  @observable accessor rsvpList = [];
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this);
   }
 
+  @action
   updateWeddingInfo(key, value) {
     this.weddingInfo[key] = value;
   }
 
+  @action
   addRsvp(guest) {
     this.rsvpList.push(guest);
   }
 
+  @computed
   get totalGuests() {
     return this.rsvpList.length;
   }

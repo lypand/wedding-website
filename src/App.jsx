@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import Header from './components/Header'
-import WeddingDetails from './components/WeddingDetails'
-import RSVP from './components/RSVP'
-import PasswordGate from './components/PasswordGate'
+import Header from './components/Home/Header'
+import Navigation from './components/Navigation/Navigation'
+import WeddingDetails from './components/Home/WeddingDetails'
+import WeekendDetails from './components/WeekendDetails/WeekendDetails'
+import PhotoGallery from './components/Photos/PhotoGallery'
+import RSVP from './components/RSVP/RSVP'
+import PasswordGate from './components/PasswordGate/PasswordGate'
+import Admin from './components/Admin/Admin'
 
-function App() {
+function MainPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   // Check if user was previously authenticated (stored in sessionStorage)
@@ -27,10 +32,28 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <div id="home">
+        <Header />
+      </div>
+      <Navigation />
       <WeddingDetails />
-      <RSVP />
+      <WeekendDetails />
+        <RSVP />
+      <PhotoGallery />
+      <div id="rsvp">
+      </div>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Router>
   )
 }
 

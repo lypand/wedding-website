@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import './PasswordGate.css'
+import '../PasswordGate/PasswordGate.css'
 
-function PasswordGate({ onAuthenticated }) {
+function AdminPasswordGate({ onAuthenticated }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (password === 'g+a2026') {
+    if (password === 'admin') {
       setError(false)
       onAuthenticated()
     } else {
@@ -20,15 +20,15 @@ function PasswordGate({ onAuthenticated }) {
   return (
     <div className="password-gate">
       <div className="password-container">
-        <h1>Welcome</h1>
-        <p>Please enter the password to view the wedding details</p>
+        <h1>Admin Access</h1>
+        <p>Please enter the admin password to view RSVPs</p>
 
         <form onSubmit={handleSubmit}>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
+            placeholder="Enter admin password"
             className={error ? 'error' : ''}
             autoFocus
           />
@@ -42,4 +42,4 @@ function PasswordGate({ onAuthenticated }) {
   )
 }
 
-export default PasswordGate
+export default AdminPasswordGate

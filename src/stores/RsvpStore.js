@@ -1,21 +1,23 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { observable, action, computed, makeObservable, runInAction } from 'mobx';
 import { apiService } from '../services/ApiService';
 
 class RsvpStore {
-  rsvps = [];
-  loading = false;
-  error = null;
-  submitting = false;
+  @observable accessor rsvps = [];
+  @observable accessor loading = false;
+  @observable accessor error = null;
+  @observable accessor submitting = false;
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this);
     this.initialize();
   }
 
+  @action
   async initialize() {
     await this.fetchRsvps();
   }
 
+  @action
   async fetchRsvps() {
     this.loading = true;
     this.error = null;
@@ -35,6 +37,7 @@ class RsvpStore {
     }
   }
 
+  @action
   async submitRsvp(rsvpData) {
     this.submitting = true;
     this.error = null;
@@ -58,14 +61,17 @@ class RsvpStore {
     }
   }
 
+  @computed
   get totalRsvps() {
     return this.rsvps.length;
   }
 
+  @computed
   get attendingCount() {
     return this.rsvps.filter(rsvp => rsvp.attending).length;
   }
 
+  @computed
   get notAttendingCount() {
     return this.rsvps.filter(rsvp => !rsvp.attending).length;
   }

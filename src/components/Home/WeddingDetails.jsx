@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import { weddingStore } from '../stores/WeddingStore';
+import { weddingStore } from '../../stores/WeddingStore';
 
 const WeddingDetails = observer(() => {
-  const { date, time, venue, address } = weddingStore.weddingInfo;
+  const { date, time, address } = weddingStore.weddingInfo;
 
   return (
     <section style={styles.section}>
@@ -12,11 +12,15 @@ const WeddingDetails = observer(() => {
           <h3 style={styles.cardTitle}>Date & Time</h3>
           <p style={styles.cardText}>{date}</p>
           <p style={styles.cardText}>{time}</p>
+          <p style={styles.cardText}>Ceremony & Reception to follow</p>
         </div>
         <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Venue</h3>
-          <p style={styles.cardText}>{venue}</p>
+          <h3 style={styles.cardTitle}>Location</h3>
           <p style={styles.cardText}>{address}</p>
+        </div>
+        <div style={styles.detailCard}>
+          <h3 style={styles.cardTitle}>Attire</h3>
+          <p style={styles.cardText}>Summer semi-formal</p>
         </div>
       </div>
     </section>
@@ -33,7 +37,8 @@ const styles = {
     textAlign: 'center',
     fontSize: '2.5rem',
     marginBottom: '3rem',
-    color: '#333',
+    color: 'white',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
   },
   detailsContainer: {
     display: 'flex',
@@ -42,7 +47,7 @@ const styles = {
     flexWrap: 'wrap',
   },
   detailCard: {
-    background: 'white',
+    background: '#e3f2fd',
     padding: '2rem',
     borderRadius: '8px',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',

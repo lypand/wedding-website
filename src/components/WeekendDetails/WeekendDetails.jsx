@@ -1,32 +1,34 @@
+import './WeekendDetails.css';
+
 const WeekendDetails = () => {
   return (
-    <section id="weekend-details" style={styles.section}>
-      <h2 style={styles.heading}>Weekend Details</h2>
-      <div style={styles.detailsContainer}>
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Dates</h3>
-          <p style={styles.cardText}>
+    <section id="weekend-details" style={styles.section} className="weekend-details-section">
+      <h2 style={styles.heading} className="section-heading">Weekend Details</h2>
+      <div style={styles.detailsContainer} className="weekend-details-container">
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Dates</h3>
+          <p style={styles.cardText} className="card-text">
             We would love to celebrate with you all weekend long! The fun will begin Friday August 14, 2026 at 3:00PM and will last until Monday August 17, 2026 at 11:00AM.
           </p>
         </div>
 
 
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Lodging</h3>
-          <p style={styles.cardText}>Come stay with us at 903 Lake Forest Drive, Ronald, WA 98940. </p>
-          <p style={styles.cardText}>There is room for everyone! </p>
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Lodging</h3>
+          <p style={styles.cardText} className="card-text">Come stay with us at 903 Lake Forest Drive, Ronald, WA 98940. </p>
+          <p style={styles.cardText} className="card-text">There is room for everyone! </p>
         </div>
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Activities</h3>
-          <p style={styles.cardText}>Cards + Euchre Tournament</p>
-          <p style={styles.cardText}>Hot Tub</p>
-          <p style={styles.cardText}>Fire Pit</p>
-          <p style={styles.cardText}>Casual Hiking</p>
-          <p style={styles.cardText}>Wine Tasting</p>
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Activities</h3>
+          <p style={styles.cardText} className="card-text">Cards + Euchre Tournament</p>
+          <p style={styles.cardText} className="card-text">Hot Tub</p>
+          <p style={styles.cardText} className="card-text">Fire Pit</p>
+          <p style={styles.cardText} className="card-text">Casual Hiking</p>
+          <p style={styles.cardText} className="card-text">Wine Tasting</p>
         </div>
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Meals</h3>
-          <p style={styles.cardText}>More information coming soon...</p>
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Meals</h3>
+          <p style={styles.cardText} className="card-text">More information coming soon...</p>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useState, useEffect } from 'react';
 import { weddingStore } from '../../stores/WeddingStore';
+import './Header.css';
 
 const Header = observer(() => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -30,17 +31,36 @@ const Header = observer(() => {
   }
 
   return (
-    <header style={styles.header}>
+    <header style={styles.header} className="header">
       <div style={styles.overlay}></div>
       <div style={styles.content}>
-        <h1 style={styles.title}>Andrew & Gretchen</h1>
-        <p style={styles.date}>August 15th, 2026</p>
+        <h1 style={styles.title} className="header-title">Andrew & Gretchen</h1>
+        <p style={styles.date} className="header-date">August 15th, 2026</p>
         <div style={styles.countdown}>
           <div style={styles.countdownItem}>
-            <span style={styles.countdownNumber}>{timeLeft.days}</span>
-            <span style={styles.countdownLabel}>Days Until the Wedding</span>
+            <span style={styles.countdownNumber} className="countdown-number">{timeLeft.days}</span>
+            <span style={styles.countdownLabel} className="countdown-label">Days Until the Wedding</span>
           </div>
         </div>
+      </div>
+      <div style={styles.scrollIndicator} className="scroll-indicator">
+        <svg
+          style={styles.arrowIcon}
+          className="arrow-icon"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 5V19M12 19L19 12M12 19L5 12"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </header>
   );
@@ -116,6 +136,17 @@ const styles = {
     letterSpacing: '1px',
     marginTop: '0.5rem',
     textShadow: '2px 2px 8px rgba(0, 0, 0, 0.6)',
+  },
+  scrollIndicator: {
+    position: 'absolute',
+    bottom: '2rem',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    zIndex: 3,
+    cursor: 'pointer',
+  },
+  arrowIcon: {
+    filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))',
   },
 };
 

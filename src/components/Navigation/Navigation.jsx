@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Navigation.css';
 
 const Navigation = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
@@ -16,11 +17,12 @@ const Navigation = () => {
   });
 
   return (
-    <nav style={styles.nav}>
-      <div style={styles.container}>
+    <nav style={styles.nav} className="navigation">
+      <div style={styles.container} className="nav-container">
         <button
           onClick={() => scrollToSection('home')}
           style={getButtonStyle('home')}
+          className="nav-button"
           onMouseEnter={() => setHoveredLink('home')}
           onMouseLeave={() => setHoveredLink(null)}
         >
@@ -29,6 +31,7 @@ const Navigation = () => {
         <button
           onClick={() => scrollToSection('weekend-details')}
           style={getButtonStyle('weekend-details')}
+          className="nav-button"
           onMouseEnter={() => setHoveredLink('weekend-details')}
           onMouseLeave={() => setHoveredLink(null)}
         >
@@ -37,6 +40,7 @@ const Navigation = () => {
         <button
           onClick={() => scrollToSection('photos')}
           style={getButtonStyle('photos')}
+          className="nav-button"
           onMouseEnter={() => setHoveredLink('photos')}
           onMouseLeave={() => setHoveredLink(null)}
         >
@@ -45,6 +49,7 @@ const Navigation = () => {
         <button
           onClick={() => scrollToSection('rsvp')}
           style={getButtonStyle('rsvp')}
+          className="nav-button"
           onMouseEnter={() => setHoveredLink('rsvp')}
           onMouseLeave={() => setHoveredLink(null)}
         >

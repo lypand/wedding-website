@@ -1,0 +1,59 @@
+/* Responsive styles for RSVP */
+@media (max-width: 768px) {
+  .rsvp-section {
+    padding: 3rem 1.5rem !important;
+  }
+
+  .section-heading {
+    font-size: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .rsvp-form {
+    padding: 1.5rem !important;
+  }
+
+  .form-label {
+    font-size: 0.95rem !important;
+  }
+
+  .form-input {
+    font-size: 0.95rem !important;
+  }
+
+  .submit-button {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .rsvp-section {
+    padding: 2rem 1rem !important;
+  }
+
+  .section-heading {
+    font-size: 1.75rem !important;
+  }
+
+  .rsvp-form {
+    padding: 1.25rem !important;
+  }
+
+  .form-label {
+    font-size: 0.9rem !important;
+  }
+
+  .checkbox-label {
+    font-size: 0.85rem !important;
+  }
+
+  .form-input {
+    padding: 0.65rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .submit-button {
+    font-size: 0.95rem !important;
+    padding: 0.85rem !important;
+  }
+}

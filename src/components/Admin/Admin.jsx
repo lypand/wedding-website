@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { rsvpStore } from '../../stores/RsvpStore'
 import AdminPasswordGate from './AdminPasswordGate'
 import { useNavigate } from 'react-router-dom'
+import './Admin.css'
 
 const Admin = observer(() => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -35,31 +36,31 @@ const Admin = observer(() => {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.header}>
-        <h1 style={styles.title}>Admin Dashboard</h1>
-        <div style={styles.headerButtons}>
-          <button onClick={handleBackToMain} style={styles.backButton}>
+    <div style={styles.container} className="admin-container">
+      <div style={styles.header} className="admin-header">
+        <h1 style={styles.title} className="admin-title">Admin Dashboard</h1>
+        <div style={styles.headerButtons} className="admin-header-buttons">
+          <button onClick={handleBackToMain} style={styles.backButton} className="admin-button">
             Back to Main
           </button>
-          <button onClick={handleLogout} style={styles.logoutButton}>
+          <button onClick={handleLogout} style={styles.logoutButton} className="admin-button logout-button">
             Logout
           </button>
         </div>
       </div>
 
-      <div style={styles.stats}>
-        <div style={styles.statCard}>
-          <h3 style={styles.statNumber}>{rsvpStore.totalRsvps}</h3>
-          <p style={styles.statLabel}>Total RSVPs</p>
+      <div style={styles.stats} className="admin-stats">
+        <div style={styles.statCard} className="stat-card">
+          <h3 style={styles.statNumber} className="stat-number">{rsvpStore.totalRsvps}</h3>
+          <p style={styles.statLabel} className="stat-label">Total RSVPs</p>
         </div>
-        <div style={{ ...styles.statCard, ...styles.statCardAttending }}>
-          <h3 style={styles.statNumber}>{rsvpStore.attendingCount}</h3>
-          <p style={styles.statLabel}>Attending</p>
+        <div style={{ ...styles.statCard, ...styles.statCardAttending }} className="stat-card">
+          <h3 style={styles.statNumber} className="stat-number">{rsvpStore.attendingCount}</h3>
+          <p style={styles.statLabel} className="stat-label">Attending</p>
         </div>
-        <div style={{ ...styles.statCard, ...styles.statCardNotAttending }}>
-          <h3 style={styles.statNumber}>{rsvpStore.notAttendingCount}</h3>
-          <p style={styles.statLabel}>Not Attending</p>
+        <div style={{ ...styles.statCard, ...styles.statCardNotAttending }} className="stat-card">
+          <h3 style={styles.statNumber} className="stat-number">{rsvpStore.notAttendingCount}</h3>
+          <p style={styles.statLabel} className="stat-label">Not Attending</p>
         </div>
       </div>
 
@@ -68,25 +69,25 @@ const Admin = observer(() => {
       ) : rsvpStore.error ? (
         <p style={styles.error}>Error: {rsvpStore.error}</p>
       ) : (
-        <div style={styles.tableContainer}>
-          <h2 style={styles.sectionTitle}>All RSVPs</h2>
+        <div style={styles.tableContainer} className="admin-table-container">
+          <h2 style={styles.sectionTitle} className="section-title">All RSVPs</h2>
           {rsvpStore.rsvps.length === 0 ? (
             <p style={styles.emptyMessage}>No RSVPs yet.</p>
           ) : (
-            <table style={styles.table}>
+            <table style={styles.table} className="admin-table">
               <thead>
                 <tr>
-                  <th style={styles.th}>Name</th>
-                  <th style={styles.th}>Email</th>
-                  <th style={styles.th}>Status</th>
+                  <th style={styles.th} className="table-header">Name</th>
+                  <th style={styles.th} className="table-header">Email</th>
+                  <th style={styles.th} className="table-header">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {rsvpStore.rsvps.map((rsvp, index) => (
                   <tr key={index} style={index % 2 === 0 ? styles.trEven : styles.trOdd}>
-                    <td style={styles.td}>{rsvp.name}</td>
-                    <td style={styles.td}>{rsvp.email}</td>
-                    <td style={styles.td}>
+                    <td style={styles.td} className="table-cell">{rsvp.name}</td>
+                    <td style={styles.td} className="table-cell">{rsvp.email}</td>
+                    <td style={styles.td} className="table-cell">
                       <span
                         style={
                           rsvp.attending

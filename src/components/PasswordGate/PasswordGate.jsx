@@ -8,7 +8,7 @@ function PasswordGate({ onAuthenticated }) {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (password === 'password') {
+    if (password.toLowerCase() === 'euchre') {
       setError(false)
       onAuthenticated()
     } else {
@@ -25,7 +25,7 @@ function PasswordGate({ onAuthenticated }) {
 
         <form onSubmit={handleSubmit}>
           <input
-            type="euchre"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"

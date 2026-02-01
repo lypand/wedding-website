@@ -1,0 +1,144 @@
+/* Responsive styles for Admin */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1.5rem !important;
+  }
+
+  .admin-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .admin-title {
+    font-size: 2rem !important;
+  }
+
+  .admin-header-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .admin-button {
+    padding: 0.65rem 1.25rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .stat-card {
+    padding: 1.5rem !important;
+  }
+
+  .stat-number {
+    font-size: 2.5rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.9rem !important;
+  }
+
+  .admin-table-container {
+    padding: 1.5rem !important;
+  }
+
+  .section-title {
+    font-size: 1.3rem !important;
+  }
+
+  .table-header {
+    font-size: 0.8rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .table-cell {
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Stack table on mobile for better readability */
+  .admin-table {
+    display: block !important;
+  }
+
+  .admin-table thead {
+    display: none !important;
+  }
+
+  .admin-table tbody {
+    display: block !important;
+  }
+
+  .admin-table tr {
+    display: block !important;
+    margin-bottom: 1rem !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    background: white !important;
+  }
+
+  .admin-table td {
+    display: block !important;
+    text-align: left !important;
+    padding: 0.5rem 0 !important;
+    border: none !important;
+  }
+
+  .admin-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: #666;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .admin-table td:first-child::before {
+    content: 'Name: ';
+  }
+
+  .admin-table td:nth-child(2)::before {
+    content: 'Email: ';
+  }
+
+  .admin-table td:last-child::before {
+    content: 'Status: ';
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-container {
+    padding: 1rem !important;
+  }
+
+  .admin-title {
+    font-size: 1.75rem !important;
+  }
+
+  .admin-header-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-button {
+    width: 100%;
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .stat-number {
+    font-size: 2rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.85rem !important;
+  }
+
+  .admin-table-container {
+    padding: 1rem !important;
+  }
+}

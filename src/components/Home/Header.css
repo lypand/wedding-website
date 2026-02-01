@@ -1,0 +1,91 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.scroll-indicator {
+  animation: fadeIn 1.5s ease-in forwards, bounce 2s ease-in-out infinite;
+  animation-delay: 0s, 1.5s;
+  opacity: 0;
+}
+
+.arrow-icon {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.scroll-indicator:hover .arrow-icon {
+  transform: scale(1.1);
+}
+
+/* Responsive styles for Header */
+@media (max-width: 768px) {
+  .header {
+    min-height: 600px !important;
+    padding: 4rem 1rem !important;
+  }
+
+  .header-title {
+    font-size: 2.5rem !important;
+    letter-spacing: 2px !important;
+  }
+
+  .header-date {
+    font-size: 1.5rem !important;
+    margin: 1rem 0 0 0 !important;
+  }
+
+  .countdown-number {
+    font-size: 2rem !important;
+  }
+
+  .countdown-label {
+    font-size: 0.9rem !important;
+  }
+
+  .scroll-indicator {
+    bottom: 1rem !important;
+  }
+
+  .arrow-icon {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    min-height: 500px !important;
+    padding: 3rem 0.5rem !important;
+  }
+
+  .header-title {
+    font-size: 2rem !important;
+    letter-spacing: 1px !important;
+  }
+
+  .header-date {
+    font-size: 1.2rem !important;
+  }
+
+  .countdown-number {
+    font-size: 1.5rem !important;
+  }
+
+  .countdown-label {
+    font-size: 0.8rem !important;
+  }
+}

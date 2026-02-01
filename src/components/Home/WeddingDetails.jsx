@@ -1,29 +1,34 @@
 import { observer } from 'mobx-react-lite';
 import { weddingStore } from '../../stores/WeddingStore';
+import WeddingDayTimeline from './WeddingDayTimeline';
+import './WeddingDetails.css';
 
 const WeddingDetails = observer(() => {
   const { date, time, address } = weddingStore.weddingInfo;
 
   return (
-    <section style={styles.section}>
-      <h2 style={styles.heading}>Wedding Details</h2>
-      <div style={styles.detailsContainer}>
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Date & Time</h3>
-          <p style={styles.cardText}>{date}</p>
-          <p style={styles.cardText}>{time}</p>
-          <p style={styles.cardText}>Ceremony & Reception to follow</p>
+    <>
+    <section style={styles.section} className="wedding-details-section">
+      <h2 style={styles.heading} className="section-heading">Wedding Details</h2>
+      <div style={styles.detailsContainer} className="details-container">
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Date & Time</h3>
+          <p style={styles.cardText} className="card-text">{date}</p>
+          <p style={styles.cardText} className="card-text">{time}</p>
+          <p style={styles.cardText} className="card-text">Ceremony & Reception to follow</p>
         </div>
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Location</h3>
-          <p style={styles.cardText}>{address}</p>
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Location</h3>
+          <p style={styles.cardText} className="card-text">{address}</p>
         </div>
-        <div style={styles.detailCard}>
-          <h3 style={styles.cardTitle}>Attire</h3>
-          <p style={styles.cardText}>Summer semi-formal</p>
+        <div style={styles.detailCard} className="detail-card">
+          <h3 style={styles.cardTitle} className="card-title">Attire</h3>
+          <p style={styles.cardText} className="card-text">Summer semi-formal</p>
         </div>
       </div>
     </section>
+        <WeddingDayTimeline />
+        </>
   );
 });
 

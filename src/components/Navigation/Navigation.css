@@ -1,0 +1,24 @@
+/* Responsive styles for Navigation */
+@media (max-width: 768px) {
+  .nav-container {
+    gap: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .nav-button {
+    font-size: 0.95rem !important;
+    padding: 0.4rem 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    gap: 0.5rem !important;
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  .nav-button {
+    font-size: 0.85rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+}

@@ -1,0 +1,56 @@
+/* Responsive styles for WeddingDetails */
+@media (max-width: 768px) {
+  .wedding-details-section {
+    padding: 3rem 1.5rem !important;
+  }
+
+  .section-heading {
+    font-size: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .details-container {
+    gap: 1.5rem !important;
+  }
+
+  .detail-card {
+    min-width: 250px !important;
+    padding: 1.5rem !important;
+  }
+
+  .card-title {
+    font-size: 1.3rem !important;
+  }
+
+  .card-text {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .wedding-details-section {
+    padding: 2rem 1rem !important;
+  }
+
+  .section-heading {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .details-container {
+    gap: 1rem !important;
+  }
+
+  .detail-card {
+    min-width: 100% !important;
+    padding: 1.25rem !important;
+  }
+
+  .card-title {
+    font-size: 1.2rem !important;
+  }
+
+  .card-text {
+    font-size: 0.95rem !important;
+  }
+}

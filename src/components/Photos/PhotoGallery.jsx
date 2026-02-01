@@ -35,9 +35,9 @@ const PhotoGallery = () => {
   };
 
   return (
-    <section id="photos" style={styles.section}>
-      <h2 style={styles.heading}>Photos</h2>
-      <div style={styles.gallery}>
+    <section id="photos" style={styles.section} className="photo-gallery-section">
+      <h2 style={styles.heading} className="section-heading">Photos</h2>
+      <div style={styles.gallery} className="photo-gallery">
         {photos.map((photo, index) => (
           <div
             key={index}
@@ -51,21 +51,21 @@ const PhotoGallery = () => {
       </div>
 
       {selectedImage && (
-        <div style={styles.lightbox} onClick={closeLightbox}>
-          <div style={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+        <div style={styles.lightbox} onClick={closeLightbox} className="lightbox">
+          <div style={styles.lightboxContent} onClick={(e) => e.stopPropagation()} className="lightbox-content">
             <button className="close-button" style={styles.closeButton} onClick={closeLightbox}>
               ✕
             </button>
             <button
-              className="nav-button"
+              className="nav-button prev-button"
               style={{ ...styles.navButton, ...styles.prevButton }}
               onClick={() => navigateImage('prev')}
             >
               ‹
             </button>
-            <img src={selectedImage} alt="Full size" style={styles.lightboxImage} />
+            <img src={selectedImage} alt="Full size" style={styles.lightboxImage} className="lightbox-image" />
             <button
-              className="nav-button"
+              className="nav-button next-button"
               style={{ ...styles.navButton, ...styles.nextButton }}
               onClick={() => navigateImage('next')}
             >

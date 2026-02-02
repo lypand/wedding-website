@@ -8,19 +8,28 @@ const PORT = process.env.PORT || 3001;
 // CORS configuration - allow frontend domain
 const allowedOrigins = [
   'http://localhost:5173', // Local development
-  'https://andrewandgretchenwedding.azurewebsites.net', // Production frontend
-  'https://andrewandgretchenwedding-g6b6c3bncwe4gxh8.canadacentral-01.azurewebsites.net', // Production frontend (alternate URL)
+  'http://localhost:3000', // Alternative local dev port
 ];
+
+// Pattern matching for Azure App Service URLs
+const isAllowedAzureOrigin = (origin) => {
+  // Allow any URL that matches: andrewandgretchenwedding*.azurewebsites.net
+  const azurePattern = /^https:\/\/andrewandgretchenwedding(-[a-z0-9]+)?\.azurewebsites\.net$/;
+  return azurePattern.test(origin);
+};
 
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+
+    // Check if origin is in allowedOrigins list or matches Azure pattern
+    if (allowedOrigins.indexOf(origin) !== -1 || isAllowedAzureOrigin(origin)) {
+      return callback(null, true);
     }
-    return callback(null, true);
+
+    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    return callback(new Error(msg), false);
   },
   credentials: true
 }));

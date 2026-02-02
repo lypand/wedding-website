@@ -26,11 +26,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27018/invite_site';
+// MongoDB/Cosmos DB connection
+const MONGODB_URI = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI || 'mongodb://localhost:27018/invite_site';
 
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => console.log('Connected to MongoDB/Cosmos DB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // RSVP Schema

@@ -14,7 +14,8 @@ const allowedOrigins = [
 // Pattern matching for Azure App Service URLs
 const isAllowedAzureOrigin = (origin) => {
   // Allow any URL that matches: andrewandgretchenwedding*.azurewebsites.net
-  const azurePattern = /^https:\/\/andrewandgretchenwedding(-[a-z0-9]+)?\.azurewebsites\.net$/;
+  // Also supports regional URLs like: andrewandgretchenwedding-***.canadacentral-01.azurewebsites.net
+  const azurePattern = /^https:\/\/andrewandgretchenwedding(-[a-z0-9]+)?(\.[\w-]+)?\.azurewebsites\.net$/;
   return azurePattern.test(origin);
 };
 

@@ -24,6 +24,8 @@ jobs:
           node-version: '22.x'
 
       - name: npm install, build, and test
+        env:
+          VITE_API_URL: https://andrewandgretchenwedding-backend-g6b6c3bncwe4gxh8.canadacentral-01.azurewebsites.net
         run: |
           npm install
           npm run build --if-present

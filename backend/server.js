@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 3001;
 // CORS configuration - allow frontend domain
 const allowedOrigins = [
   'http://localhost:5173', // Local development
-  'https://andrewandgretchenwedding.netlify.app', // Production frontend (update this to your actual frontend URL)
+  'https://andrewandgretchenwedding.azurewebsites.net', // Production frontend
+  'https://andrewandgretchenwedding-g6b6c3bncwe4gxh8.canadacentral-01.azurewebsites.net', // Production frontend (alternate URL)
 ];
 
 app.use(cors({

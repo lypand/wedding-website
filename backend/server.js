@@ -157,7 +157,9 @@ app.get('/api/rsvps', async (req, res) => {
       });
     }
 
-    const rsvps = await RSVP.find().sort({ createdAt: -1 });
+    // Sort by _id (which contains timestamp) instead of createdAt
+    // Cosmos DB requires explicit indexing for sort fields, but _id is always indexed
+    const rsvps = await RSVP.find().sort({ _id: -1 });
     res.json({ success: true, data: rsvps });
   } catch (error) {
     console.error('Error fetching RSVPs:', error);

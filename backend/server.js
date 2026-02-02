@@ -157,9 +157,17 @@ app.get('/api/rsvps', async (req, res) => {
       });
     }
 
-    // Sort by _id (which contains timestamp) instead of createdAt
-    // Cosmos DB requires explicit indexing for sort fields, but _id is always indexed
-    const rsvps = await RSVP.find().sort({ _id: -1 });
+    // Fetch without sort due to Cosmos DB indexing policy
+    // We'll sort client-side if needed, or configure indexes in Azure Portal
+    const rsvps = await RSVP.find();
+
+    // Sort in-memory by _id (newest first) to avoid Cosmos DB index requirement
+    rsvps.sort((a, b) => {
+      const timeA = a._id.getTimestamp().getTime();
+      const timeB = b._id.getTimestamp().getTime();
+      return timeB - timeA; // Descending order (newest first)
+    });
+
     res.json({ success: true, data: rsvps });
   } catch (error) {
     console.error('Error fetching RSVPs:', error);

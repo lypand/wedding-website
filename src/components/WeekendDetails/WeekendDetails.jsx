@@ -42,26 +42,19 @@ const WeekendDetails = () => {
         <div style={styles.detailCard} className="detail-card">
           <h3 style={styles.cardTitle} className="card-title">Weekend Dates</h3>
           <p className="card-text-primary">Celebrate with us all weekend long!</p>
-          <div className="date-block">
-            <p className="card-text-primary">Friday, August 14</p>
-          </div>
-          <div className="date-separator">•</div>
-          <div className="date-block">
-            <p className="card-text-primary">Monday, August 17</p>
-          </div>
+          <p className="card-text-primary">Friday, August 14 -</p>
+          <p className="card-text-primary">Monday, August 17</p>
         </div>
 
         <div style={styles.detailCard} className="detail-card">
           <h3 style={styles.cardTitle} className="card-title">Lodging</h3>
-          <p className="card-text-primary">903 Lake Forest Drive</p>
-          <p className="card-text-primary">Ronald, WA 98940</p>
-          <p className="card-text-highlight">There is room for everyone!</p>
+          <p className="card-text-primary">Stay with us at the venue</p>
+          <p className="card-text-primary">There is room for everyone!</p>
         </div>
 
         <div style={styles.detailCard} className="detail-card">
           <h3 style={styles.cardTitle} className="card-title">Meals</h3>
-          <p className="card-text-secondary">Details coming soon...</p>
-          <p className="card-text-highlight">We'll keep you well fed!</p>
+          <p className="card-text-primary">Details coming soon</p>
         </div>
       </div>
 

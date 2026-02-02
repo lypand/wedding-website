@@ -55,22 +55,50 @@ const sanitizedUri = MONGODB_URI.replace(/\/\/([^:]+):([^@]+)@/, '//***:***@');
 console.log('Attempting to connect to:', sanitizedUri);
 console.log('Using connection string from:', process.env.AZURE_COSMOS_CONNECTIONSTRING ? 'AZURE_COSMOS_CONNECTIONSTRING' : process.env.MONGODB_URI ? 'MONGODB_URI' : 'fallback');
 
+// Connection event handlers
+mongoose.connection.on('connecting', () => {
+  console.log('Attempting to connect to MongoDB/Cosmos DB...');
+});
+
+mongoose.connection.on('connected', () => {
+  console.log('✓ Successfully established connection to MongoDB/Cosmos DB');
+});
+
+mongoose.connection.on('open', () => {
+  console.log('✓ MongoDB connection is open and ready');
+  console.log('Database:', mongoose.connection.db.databaseName);
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('✗ MongoDB connection error:', err.message);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
+
 mongoose.connect(MONGODB_URI, {
-  serverSelectionTimeoutMS: 10000,
+  serverSelectionTimeoutMS: 30000, // Increased from 10s to 30s for Cosmos DB
   socketTimeoutMS: 45000,
+  connectTimeoutMS: 30000,
+  family: 4, // Use IPv4, skip trying IPv6
+  bufferCommands: false, // Fail fast instead of buffering
+  maxPoolSize: 10,
+  minPoolSize: 1,
 })
   .then(() => {
-    console.log('✓ Successfully connected to MongoDB/Cosmos DB');
-    console.log('Database:', mongoose.connection.db.databaseName);
+    console.log('✓ Mongoose connect() promise resolved');
   })
   .catch((err) => {
-    console.error('✗ MongoDB connection error:');
+    console.error('✗ Mongoose connect() failed:');
     console.error('Error name:', err.name);
     console.error('Error message:', err.message);
-    console.error('Full error:', err);
+    if (err.reason) {
+      console.error('Reason:', err.reason);
+    }
   });
 
-// RSVP Schema
+// RSVP Schema with Cosmos DB optimizations
 const rsvpSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -91,23 +119,48 @@ const rsvpSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  bufferCommands: false, // Fail fast for Cosmos DB
+  autoCreate: false, // Cosmos DB doesn't need collection creation
+  autoIndex: false // Cosmos DB handles indexes differently
 });
 
-const RSVP = mongoose.model('rsvps', rsvpSchema);
+const RSVP = mongoose.model('rsvps', rsvpSchema, 'rsvps'); // Explicit collection name
 
 // API Routes
 
-// Health check endpoint
+// Health check endpoint with database status
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Server is running' });
+  const dbStatus = mongoose.connection.readyState;
+  const dbStatusMap = {
+    0: 'disconnected',
+    1: 'connected',
+    2: 'connecting',
+    3: 'disconnecting'
+  };
+
+  res.json({
+    status: 'ok',
+    message: 'Server is running',
+    database: dbStatusMap[dbStatus] || 'unknown'
+  });
 });
 
 // Get all RSVPs
 app.get('/api/rsvps', async (req, res) => {
   try {
+    // Check if database is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database not connected. Please try again shortly.'
+      });
+    }
+
     const rsvps = await RSVP.find().sort({ createdAt: -1 });
     res.json({ success: true, data: rsvps });
   } catch (error) {
+    console.error('Error fetching RSVPs:', error);
     res.status(500).json({ success: false, message: error.message });
   }
 });
@@ -115,6 +168,14 @@ app.get('/api/rsvps', async (req, res) => {
 // Submit RSVP
 app.post('/api/rsvps', async (req, res) => {
   try {
+    // Check if database is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database not connected. Please try again shortly.'
+      });
+    }
+
     const { name, email, attending } = req.body;
 
     // Validate required fields

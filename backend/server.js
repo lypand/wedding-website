@@ -29,9 +29,25 @@ app.use(express.json());
 // MongoDB/Cosmos DB connection
 const MONGODB_URI = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI || 'mongodb://localhost:27018/invite_site';
 
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB/Cosmos DB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+// Log connection attempt (hide password for security)
+const sanitizedUri = MONGODB_URI.replace(/\/\/([^:]+):([^@]+)@/, '//***:***@');
+console.log('Attempting to connect to:', sanitizedUri);
+console.log('Using connection string from:', process.env.AZURE_COSMOS_CONNECTIONSTRING ? 'AZURE_COSMOS_CONNECTIONSTRING' : process.env.MONGODB_URI ? 'MONGODB_URI' : 'fallback');
+
+mongoose.connect(MONGODB_URI, {
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 45000,
+})
+  .then(() => {
+    console.log('✓ Successfully connected to MongoDB/Cosmos DB');
+    console.log('Database:', mongoose.connection.db.databaseName);
+  })
+  .catch((err) => {
+    console.error('✗ MongoDB connection error:');
+    console.error('Error name:', err.name);
+    console.error('Error message:', err.message);
+    console.error('Full error:', err);
+  });
 
 // RSVP Schema
 const rsvpSchema = new mongoose.Schema({

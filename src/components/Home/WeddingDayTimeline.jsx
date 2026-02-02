@@ -29,7 +29,7 @@ const WeddingDayTimeline = observer(() => {
       icon: '🍽️'
     },
     {
-      title: 'Euchre Tournament',
+      title: 'Euchre',
       description: 'Euchre Tournament begins',
       icon: '🏆'
     }
@@ -37,7 +37,6 @@ const WeddingDayTimeline = observer(() => {
 
   return (
     <section style={styles.section} className="timeline-section">
-      <h2 style={styles.heading} className="timeline-heading">Wedding Day Timeline</h2>
       <div className="timeline-container">
         <div className="timeline-wrapper">
           {timelineEvents.map((event, index) => (
@@ -58,16 +57,9 @@ const WeddingDayTimeline = observer(() => {
 
 const styles = {
   section: {
-    padding: '4rem 2rem',
+    padding: '1rem 2rem',
     maxWidth: '1400px',
     margin: '0 auto',
-  },
-  heading: {
-    textAlign: 'center',
-    fontSize: '2.5rem',
-    marginBottom: '3rem',
-    color: 'white',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
   },
 };
 

@@ -29,7 +29,7 @@ const RSVP = observer(() => {
   };
 
   return (
-    <section style={styles.section} className="rsvp-section">
+    <section id="rsvp" style={styles.section} className="rsvp-section">
       <h2 style={styles.heading} className="section-heading">RSVP</h2>
       <form onSubmit={handleSubmit} style={styles.form} className="rsvp-form">
         <div style={styles.formGroup}>
@@ -57,15 +57,29 @@ const RSVP = observer(() => {
           />
         </div>
         <div style={styles.formGroup}>
-          <label style={styles.label} className="form-label checkbox-label">
-            <input
-              type="checkbox"
-              checked={attending}
-              onChange={(e) => setAttending(e.target.checked)}
-              style={styles.checkbox}
-            />
-            I can't wait to celebrate! I'll be there!
-          </label>
+          <label style={styles.label} className="form-label">Will you be joining us?</label>
+          <div className="attendance-options">
+            <div
+              className={`attendance-card ${attending ? 'selected' : ''}`}
+              onClick={() => setAttending(true)}
+            >
+              <div className="attendance-icon">🎉</div>
+              <div className="attendance-text">
+                <h4>Joyfully Accept</h4>
+                <p>Can't wait to celebrate!</p>
+              </div>
+            </div>
+            <div
+              className={`attendance-card ${!attending ? 'selected' : ''}`}
+              onClick={() => setAttending(false)}
+            >
+              <div className="attendance-icon">😢</div>
+              <div className="attendance-text">
+                <h4>Regretfully Decline</h4>
+                <p>Will be there in spirit</p>
+              </div>
+            </div>
+          </div>
         </div>
         {rsvpStore.error && <p style={styles.error}>{rsvpStore.error}</p>}
         <button type="submit" style={styles.button} className="submit-button" disabled={rsvpStore.submitting}>

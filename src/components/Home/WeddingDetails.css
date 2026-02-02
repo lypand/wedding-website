@@ -1,3 +1,41 @@
+/* Text Hierarchy Styles */
+.card-text-primary {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0.75rem 0;
+  line-height: 1.4;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.card-text-secondary {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0.4rem 0;
+  line-height: 1.5;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.card-text-highlight {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0.75rem 0 0 0;
+  line-height: 1.4;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.date-block {
+  margin: 0.75rem 0;
+}
+
+.date-separator {
+  font-size: 1.5rem;
+  color: #667eea;
+  margin: 0.5rem 0;
+}
+
 /* Responsive styles for WeddingDetails */
 @media (max-width: 768px) {
   .wedding-details-section {
@@ -24,6 +62,18 @@
 
   .card-text {
     font-size: 1rem !important;
+  }
+
+  .card-text-primary {
+    font-size: 1.1rem;
+  }
+
+  .card-text-secondary {
+    font-size: 0.9rem;
+  }
+
+  .card-text-highlight {
+    font-size: 0.95rem;
   }
 }
 
@@ -52,5 +102,24 @@
 
   .card-text {
     font-size: 0.95rem !important;
+  }
+
+  .card-text-primary {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .card-text-secondary {
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+  }
+
+  .card-text-highlight {
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .date-separator {
+    font-size: 1.25rem;
   }
 }

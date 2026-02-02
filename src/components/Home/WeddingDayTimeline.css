@@ -6,8 +6,10 @@
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2rem 0;
+  padding: 1rem 0;
   scroll-behavior: smooth;
+  display: flex;
+  justify-content: center;
 
   /* Custom scrollbar styling */
   scrollbar-width: thin;
@@ -36,8 +38,9 @@
   display: flex;
   align-items: center;
   min-width: fit-content;
-  padding: 2rem 1rem;
+  padding: 1rem;
   position: relative;
+  margin: 0 auto;
 }
 
 .timeline-item {
@@ -150,15 +153,15 @@
   }
 
   .timeline-section {
-    padding: 3rem 1rem !important;
+    padding: 1.5rem 1rem !important;
   }
 
   .timeline-container {
-    padding: 1rem 0;
+    padding: 0.75rem 0;
   }
 
   .timeline-wrapper {
-    padding: 1rem 0.5rem;
+    padding: 0.75rem 0.5rem;
   }
 
   .timeline-item {
@@ -196,7 +199,7 @@
   }
 
   .timeline-section {
-    padding: 2rem 0.5rem !important;
+    padding: 1rem 0.5rem !important;
   }
 
   .timeline-item {

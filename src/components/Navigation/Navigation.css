@@ -1,3 +1,41 @@
+/* Enhanced Fixed Navigation that appears after scrolling */
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease, transform 0.3s ease;
+}
+
+.navigation.hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.navigation.visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.navigation.scrolled {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
 /* Responsive styles for Navigation */
 @media (max-width: 768px) {
   .nav-container {

@@ -1,3 +1,79 @@
+/* Attendance Selection Styles */
+.attendance-options {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.attendance-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  text-align: center;
+}
+
+.attendance-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.attendance-card.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.attendance-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.attendance-card.selected .attendance-icon {
+  animation: none;
+  transform: scale(1.1);
+}
+
+.attendance-text h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.attendance-text p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.attendance-card.selected .attendance-text h4 {
+  color: #667eea;
+}
+
+.attendance-card.selected .attendance-text p {
+  color: #764ba2;
+}
+
 /* Responsive styles for RSVP */
 @media (max-width: 768px) {
   .rsvp-section {
@@ -23,6 +99,26 @@
 
   .submit-button {
     font-size: 1rem !important;
+  }
+
+  .attendance-options {
+    gap: 0.75rem;
+  }
+
+  .attendance-card {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .attendance-icon {
+    font-size: 2.5rem;
+  }
+
+  .attendance-text h4 {
+    font-size: 1rem;
+  }
+
+  .attendance-text p {
+    font-size: 0.8rem;
   }
 }
 
@@ -55,5 +151,26 @@
   .submit-button {
     font-size: 0.95rem !important;
     padding: 0.85rem !important;
+  }
+
+  .attendance-options {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .attendance-card {
+    padding: 1.25rem;
+  }
+
+  .attendance-icon {
+    font-size: 2.5rem;
+  }
+
+  .attendance-text h4 {
+    font-size: 1rem;
+  }
+
+  .attendance-text p {
+    font-size: 0.8rem;
   }
 }

@@ -1,8 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Navigation.css';
 
 const Navigation = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 0);
+      // Show navigation after scrolling past the header (around 750px)
+      setShowNav(scrollPosition > 750);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -17,8 +31,8 @@ const Navigation = () => {
   });
 
   return (
-    <nav style={styles.nav} className="navigation">
-      <div style={styles.container} className="nav-container">
+    <nav className={`navigation ${isScrolled ? 'scrolled' : ''} ${showNav ? 'visible' : 'hidden'}`}>
+      <div className="nav-container">
         <button
           onClick={() => scrollToSection('home')}
           style={getButtonStyle('home')}
@@ -27,6 +41,15 @@ const Navigation = () => {
           onMouseLeave={() => setHoveredLink(null)}
         >
           Home
+        </button>
+        <button
+          onClick={() => scrollToSection('wedding-details')}
+          style={getButtonStyle('wedding-details')}
+          className="nav-button"
+          onMouseEnter={() => setHoveredLink('wedding-details')}
+          onMouseLeave={() => setHoveredLink(null)}
+        >
+          Wedding Day
         </button>
         <button
           onClick={() => scrollToSection('weekend-details')}
@@ -38,15 +61,6 @@ const Navigation = () => {
           Weekend Details
         </button>
         <button
-          onClick={() => scrollToSection('photos')}
-          style={getButtonStyle('photos')}
-          className="nav-button"
-          onMouseEnter={() => setHoveredLink('photos')}
-          onMouseLeave={() => setHoveredLink(null)}
-        >
-          Photos
-        </button>
-        <button
           onClick={() => scrollToSection('rsvp')}
           style={getButtonStyle('rsvp')}
           className="nav-button"
@@ -55,28 +69,21 @@ const Navigation = () => {
         >
           RSVP
         </button>
+        <button
+          onClick={() => scrollToSection('photos')}
+          style={getButtonStyle('photos')}
+          className="nav-button"
+          onMouseEnter={() => setHoveredLink('photos')}
+          onMouseLeave={() => setHoveredLink(null)}
+        >
+          Photos
+        </button>
       </div>
     </nav>
   );
 };
 
 const styles = {
-  nav: {
-    background: 'rgba(255, 255, 255, 0.9)',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
-  },
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '1.5rem',
-    padding: '1rem 2rem',
-    maxWidth: '1200px',
-    margin: '0 auto',
-    flexWrap: 'wrap',
-  },
   navLink: {
     background: 'none',
     border: 'none',

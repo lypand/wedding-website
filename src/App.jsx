@@ -38,10 +38,8 @@ function MainPage() {
       <Navigation />
       <WeddingDetails />
       <WeekendDetails />
-        <RSVP />
+      <RSVP />
       <PhotoGallery />
-      <div id="rsvp">
-      </div>
     </div>
   )
 }

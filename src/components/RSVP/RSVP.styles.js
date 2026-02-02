@@ -1,6 +1,6 @@
 export const styles = {
   section: {
-    padding: '2rem 2rem',
+    padding: '0rem 2rem',
     maxWidth: '600px',
     margin: '0 auto',
   },

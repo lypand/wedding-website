@@ -14,21 +14,32 @@ const allowedOrigins = [
 // Pattern matching for Azure App Service URLs
 const isAllowedAzureOrigin = (origin) => {
   // Allow any URL that matches: andrewandgretchenwedding*.azurewebsites.net
-  // Also supports regional URLs like: andrewandgretchenwedding-***.canadacentral-01.azurewebsites.net
-  const azurePattern = /^https:\/\/andrewandgretchenwedding(-[a-z0-9]+)?(\.[\w-]+)?\.azurewebsites\.net$/;
+  // Handles both simple URLs and regional URLs with multiple hyphens
+  // Examples: andrewandgretchenwedding-g9gcf5euepcjfwf6.canadacentral-01.azurewebsites.net
+  //           andrewandgretchenwedding-backend-g6b6c3bncwe4gxh8.canadacentral-01.azurewebsites.net
+  const azurePattern = /^https:\/\/andrewandgretchenwedding-[a-z0-9-]+(\.[a-z0-9-]+)?\.azurewebsites\.net$/;
   return azurePattern.test(origin);
 };
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
+    console.log('CORS request from origin:', origin);
 
-    // Check if origin is in allowedOrigins list or matches Azure pattern
-    if (allowedOrigins.indexOf(origin) !== -1 || isAllowedAzureOrigin(origin)) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) {
+      console.log('No origin - allowing');
       return callback(null, true);
     }
 
+    // Check if origin is in allowedOrigins list or matches Azure pattern
+    const isAllowed = allowedOrigins.indexOf(origin) !== -1 || isAllowedAzureOrigin(origin);
+    console.log('Origin allowed:', isAllowed);
+
+    if (isAllowed) {
+      return callback(null, true);
+    }
+
+    console.log('Origin REJECTED:', origin);
     const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
     return callback(new Error(msg), false);
   },

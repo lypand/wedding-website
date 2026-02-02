@@ -3,14 +3,30 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors());
+// CORS configuration - allow frontend domain
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  'https://andrewandgretchenwedding.netlify.app', // Production frontend (update this to your actual frontend URL)
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
 app.use(express.json());
 
 // MongoDB connection
-const MONGODB_URI = 'mongodb://localhost:27018/invite_site';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27018/invite_site';
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))

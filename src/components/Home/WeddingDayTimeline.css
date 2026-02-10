@@ -1,46 +1,18 @@
-.timeline-section {
-  overflow-x: hidden;
-}
 
 .timeline-container {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 1rem 0;
-  scroll-behavior: smooth;
+  padding: 1.5rem 0;
   display: flex;
   justify-content: center;
-
-  /* Custom scrollbar styling */
-  scrollbar-width: thin;
-  scrollbar-color: #667eea #e3f2fd;
-}
-
-.timeline-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.timeline-container::-webkit-scrollbar-track {
-  background: #e3f2fd;
-  border-radius: 10px;
-}
-
-.timeline-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 10px;
-}
-
-.timeline-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
 .timeline-wrapper {
-  display: flex;
-  align-items: center;
-  min-width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1400px;
+  width: 100%;
   padding: 1rem;
-  position: relative;
-  margin: 0 auto;
 }
 
 .timeline-item {
@@ -48,8 +20,6 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  min-width: 200px;
-  flex-shrink: 0;
 }
 
 .timeline-content {
@@ -59,7 +29,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   height: 200px;
-  width: 180px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,19 +127,17 @@
   }
 
   .timeline-container {
-    padding: 0.75rem 0;
+    padding: 1rem 0;
   }
 
   .timeline-wrapper {
-    padding: 0.75rem 0.5rem;
-  }
-
-  .timeline-item {
-    min-width: 160px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 0.75rem;
   }
 
   .timeline-content {
-    width: 150px;
+    width: 100%;
     height: 180px;
     padding: 1.25rem;
   }
@@ -202,12 +170,14 @@
     padding: 1rem 0.5rem !important;
   }
 
-  .timeline-item {
-    min-width: 140px;
+  .timeline-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem;
   }
 
   .timeline-content {
-    width: 130px;
+    width: 100%;
     height: 170px;
     padding: 1rem;
   }
@@ -233,28 +203,3 @@
   }
 }
 
-/* Scroll hint for mobile */
-@media (max-width: 768px) {
-  .timeline-container::after {
-    content: '→';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: rgba(102, 126, 234, 0.5);
-    animation: slideHint 1.5s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes slideHint {
-    0%, 100% {
-      opacity: 0.3;
-      transform: translateY(-50%) translateX(0);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(-50%) translateX(10px);
-    }
-  }
-}

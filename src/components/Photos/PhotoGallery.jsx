@@ -5,12 +5,30 @@ const PhotoGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const photos = [
+    '/images/IMG_9914.jpg',
+    '/images/IMG_1004.jpg',
+    '/images/IMG_1212.jpg',
+    '/images/IMG_1221.jpg',
+    '/images/IMG_1254.jpg',
+    '/images/IMG_1583.jpg',
+    '/images/IMG_1319.jpg',
+    '/images/IMG_1373.jpg',
+    '/images/IMG_2443.jpg',
+    '/images/IMG_2445.jpg',
+    '/images/IMG_2529.jpg',
+    '/images/IMG_2654.jpg',
+    '/images/IMG_2783.jpg',
+    '/images/IMG_2944.jpg',
+    '/images/IMG_3679.jpg',
+    '/images/IMG_0860.jpg',
+    '/images/IMG_0815.jpg',
     '/images/IMG_6012.JPG',
     '/images/IMG_6015.JPG',
     '/images/IMG_6034.JPG',
     '/images/IMG_6042.JPG',
     '/images/IMG_6066.JPG',
     '/images/IMG_6078.JPG',
+    '/images/IMG_6081.JPG',
   ];
 
   const openLightbox = (photo) => {

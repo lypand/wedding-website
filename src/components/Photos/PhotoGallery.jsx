@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './PhotoGallery.css';
 
 const PhotoGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [visiblePhotos, setVisiblePhotos] = useState([]);
 
   const photos = [
     '/images/IMG_9914.jpg',
@@ -13,20 +14,20 @@ const PhotoGallery = () => {
     '/images/IMG_1583.jpg',
     '/images/IMG_1319.jpg',
     '/images/IMG_1373.jpg',
-    '/images/IMG_2443.jpg',
     '/images/IMG_2445.jpg',
     '/images/IMG_2529.jpg',
     '/images/IMG_2654.jpg',
     '/images/IMG_2783.jpg',
     '/images/IMG_2944.jpg',
     '/images/IMG_3679.jpg',
+    '/images/IMG_4674.jpg',
+    '/images/IMG_5918.jpg',
+    '/images/IMG_5987.jpg',
     '/images/IMG_0860.jpg',
     '/images/IMG_0815.jpg',
     '/images/IMG_6012.JPG',
     '/images/IMG_6015.JPG',
     '/images/IMG_6034.JPG',
-    '/images/IMG_6042.JPG',
-    '/images/IMG_6066.JPG',
     '/images/IMG_6078.JPG',
     '/images/IMG_6081.JPG',
   ];
@@ -52,18 +53,36 @@ const PhotoGallery = () => {
     setSelectedImage(photos[newIndex]);
   };
 
+  // Load photos progressively - start with first 6, then load more
+  useEffect(() => {
+    // Load first batch immediately
+    setVisiblePhotos(photos.slice(0, 6));
+
+    // Load remaining photos after a short delay
+    const timer = setTimeout(() => {
+      setVisiblePhotos(photos);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section id="photos" style={styles.section} className="photo-gallery-section">
       <h2 style={styles.heading} className="section-heading">Photos</h2>
       <div style={styles.gallery} className="photo-gallery">
-        {photos.map((photo, index) => (
+        {visiblePhotos.map((photo, index) => (
           <div
             key={index}
             className="photo-card"
             style={styles.photoCard}
             onClick={() => openLightbox(photo)}
           >
-            <img src={photo} alt={`Wedding photo ${index + 1}`} style={styles.image} />
+            <img
+              src={photo}
+              alt={`Wedding photo ${index + 1}`}
+              style={styles.image}
+              loading="lazy"
+            />
           </div>
         ))}
       </div>

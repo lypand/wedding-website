@@ -44,6 +44,10 @@ const WeekendDetails = () => {
           <p className="card-text-primary">Celebrate with us all weekend long!</p>
           <p className="card-text-primary">Friday, August 14 -</p>
           <p className="card-text-primary">Monday, August 17</p>
+          <div style={styles.timesSection} className="times-section">
+            <p style={styles.timeText}>Check-in: 3:00 PM</p>
+            <p style={styles.timeText}>Check-out: 11:00 AM</p>
+          </div>
         </div>
 
         <div style={styles.detailCard} className="detail-card">
@@ -107,6 +111,15 @@ const styles = {
     color: '#667eea',
   },
   cardText: {
+    fontSize: '1.1rem',
+    margin: '0.5rem 0',
+    color: '#666',
+    lineHeight: '1.6',
+  },
+  timesSection: {
+    marginTop: '1.5rem',
+  },
+  timeText: {
     fontSize: '1.1rem',
     margin: '0.5rem 0',
     color: '#666',

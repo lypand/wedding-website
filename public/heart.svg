@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Ring band -->
+  <ellipse cx="16" cy="20" rx="10" ry="3" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <ellipse cx="16" cy="20" rx="7" ry="2" fill="none" stroke="#FFD700" stroke-width="1.5"/>
+  <path d="M 6 20 Q 6 14 16 14 Q 26 14 26 20" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <path d="M 9 20 Q 9 16 16 16 Q 23 16 23 20" fill="none" stroke="#FFD700" stroke-width="1.5"/>
+
+  <!-- Diamond -->
+  <path d="M 16 4 L 18 8 L 20 10 L 16 14 L 12 10 L 14 8 Z" fill="#E3F2FD" stroke="#90CAF9" stroke-width="0.5"/>
+  <path d="M 16 4 L 18 8 L 16 10 L 14 8 Z" fill="#FFFFFF" opacity="0.8"/>
+  <line x1="16" y1="8" x2="16" y2="14" stroke="#90CAF9" stroke-width="0.5"/>
+  <line x1="14" y1="8" x2="18" y2="8" stroke="#90CAF9" stroke-width="0.5"/>
+</svg>

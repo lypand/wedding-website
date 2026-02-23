@@ -70,6 +70,15 @@ const Navigation = () => {
           RSVP
         </button>
         <button
+          onClick={() => scrollToSection('registry')}
+          style={getButtonStyle('registry')}
+          className="nav-button"
+          onMouseEnter={() => setHoveredLink('registry')}
+          onMouseLeave={() => setHoveredLink(null)}
+        >
+          Registry
+        </button>
+        <button
           onClick={() => scrollToSection('photos')}
           style={getButtonStyle('photos')}
           className="nav-button"

@@ -15,7 +15,9 @@ const Header = observer(() => {
   }, []);
 
   function calculateTimeLeft() {
-    const weddingDate = new Date('2026-08-15T13:00:00');
+    // August 15, 2026 at 1:00 PM Pacific Time (Ronald, WA)
+    // PDT is UTC-7, so 13:00 PDT = 20:00 UTC
+    const weddingDate = new Date('2026-08-15T20:00:00Z');
     const now = new Date();
     const difference = weddingDate - now;
 
@@ -106,7 +108,7 @@ const styles = {
     fontSize: '2rem',
     margin: '1.5rem 0 0 0',
     fontWeight: '300',
-    fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     letterSpacing: '2px',
     textShadow: '2px 2px 8px rgba(0, 0, 0, 0.6)',
   },
@@ -132,7 +134,7 @@ const styles = {
   countdownLabel: {
     fontSize: '1rem',
     fontWeight: '300',
-    fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     letterSpacing: '1px',
     marginTop: '0.5rem',
     textShadow: '2px 2px 8px rgba(0, 0, 0, 0.6)',

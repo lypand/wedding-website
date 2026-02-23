@@ -7,6 +7,7 @@ import WeddingDetails from './components/Home/WeddingDetails'
 import WeekendDetails from './components/WeekendDetails/WeekendDetails'
 import PhotoGallery from './components/Photos/PhotoGallery'
 import RSVP from './components/RSVP/RSVP'
+import Registry from './components/Registry/Registry'
 import PasswordGate from './components/PasswordGate/PasswordGate'
 import Admin from './components/Admin/Admin'
 
@@ -39,6 +40,7 @@ function MainPage() {
       <WeddingDetails />
       <WeekendDetails />
       <RSVP />
+      <Registry />
       <PhotoGallery />
     </div>
   )

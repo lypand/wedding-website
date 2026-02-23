@@ -1,0 +1,82 @@
+.registry-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.registry-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.registry-card {
+  background: #e3f2fd;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.registry-subtext {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  text-shadow: none;
+}
+
+.registry-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.registry-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+@media (max-width: 768px) {
+  .registry-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .registry-heading {
+    font-size: 2rem;
+  }
+
+  .registry-subtext {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .registry-section {
+    padding: 2rem 1rem;
+  }
+
+  .registry-heading {
+    font-size: 1.75rem;
+  }
+
+  .registry-button {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+  }
+}
